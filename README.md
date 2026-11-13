@@ -1,5 +1,7 @@
 # ha-first-home-planner：第一個 Home Assistant 智慧家庭規劃 Skill（繁體中文）
 
+> 📖 為什麼做、怎麼用：[智慧家庭怎麼開始：四年後，今天仍會買和絕不重買的東西](https://drpwchen.com/posts/smart-home-2026-rebuild/)　｜　[English summary](#english-summary)
+
 一個 [Agent Skill](https://agentskills.io/specification)，讓 Claude Code、Codex 這類 AI agent
 帶**完全沒經驗的人**規劃第一個 Home Assistant（HA）智慧家庭：先問你想解決什麼生活小事、住哪、跟誰住、
 能不能動線路、斷網要剩什麼，再給你一張**第一期購物清單三格表（必買／可等／別買）**和**買之前要查的事**。
@@ -30,6 +32,12 @@
 | HA 已經在跑：寫自動化、儀表板、備份的最佳實務 | 官方 [homeassistant-ai/skills](https://github.com/homeassistant-ai/skills) |
 | HA 已經在跑：讓 AI 直接讀狀態、操作、管理設定 | [ha-mcp](https://github.com/homeassistant-ai/ha-mcp)、HA 內建 MCP Server 整合 |
 
+## 需求與費用
+
+- 一個能載入 Agent Skill 的 AI agent：Claude Code 或 Codex CLI 等（工具本身的訂閱費另計）。
+- 不需要 Home Assistant、不需要任何設備，也不需要 API key；這個 skill 是純文字，本身免費。
+- 作業系統不限（只是複製資料夾）。
+
 ## 安裝
 
 把 `skills/ha-first-home-planner/` 整個資料夾複製到 agent 的 skills 目錄。以 Claude Code 個人目錄為例
@@ -48,6 +56,17 @@ cp -r ha-first-home-skill/skills/ha-first-home-planner ~/.claude/skills/
 - **其他支援 Agent Skills 標準的工具**：放進該工具的 skills 目錄
 
 然後開一個新的 session（skill 在開場時載入），直接說：「我想開始做智慧家庭，可以幫我規劃嗎？」
+
+預期結果：AI 會先問你生活小事、住家、家人、預算等問題，問完後給你「必買／可等／別買」三格購物清單與買之前要查的事。
+
+> 🧋 省了你時間的話，[請我喝杯飲料](https://drpwchen.com/support/)。
+
+## 限制
+
+- 只管「還沒買／剛買第一批」：不寫自動化 YAML、不改 HA 設定，那是裝好之後的事（見上面的分工表）。
+- 不放設備型號與價格；AI 要在當下自己查，查到的連結與日期請你再看一次。
+- 台灣在地化查核（110V、NCC、商品安全標章等）以截至文件標註日期為準，之後可能變動。
+- AI 的輸出是草稿，不是專業建議；門鎖、保全、市電接線請找專業人員。
 
 ## 檔案
 
@@ -69,6 +88,10 @@ scripts/check_skill.py               格式與個資檢查
 - 文字內容（skill 本體、`research/`、`tests/`、本 README）：[CC BY 4.0](LICENSE)——可以自由分享、改作、商用，
   請標示出處（作者陳柏威＋本 repo 連結）並註明是否修改。
 - `scripts/check_skill.py`：[MIT](LICENSE-MIT)。
+
+## Support 支持
+
+如果這個 skill 幫你少踩了坑，歡迎[請我喝杯飲料](https://drpwchen.com/support/) 🧋
 
 ---
 
